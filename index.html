@@ -4,132 +4,242 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Cue Library</title>
-<meta name="description" content="A reading room for the music of moving pictures. Twenty original records for launch videos, teasers, demos and reels, with every part animated and every term explained.">
+<meta name="description" content="A reading room for the music of moving pictures. Twenty original records for launch films, teasers, demos and reels, taken apart as they play, so you can ask for the right music by name.">
 <meta property="og:title" content="The Cue Library">
-<meta property="og:description" content="Learn the words for the music you want. Twenty original records, every part animated, every term explained.">
+<meta property="og:description" content="Music for moving pictures, taken apart so you can ask for it by name. Twenty original records, a cutting room for your own film, and a brief ready to paste.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Cue Library">
-<meta name="twitter:description" content="Learn the words for the music you want. Twenty original records for people who make videos.">
+<meta name="twitter:description" content="Music for moving pictures, taken apart so you can ask for it by name.">
 <meta name="twitter:image" content="/og.png">
-<meta name="theme-color" content="#1E3A2F">
+<meta name="theme-color" content="#1A0F09">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:wght@400;700&display=swap">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/island.css">
 </head>
 <body>
-<div class="wrap">
+<canvas id="room" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
 
-<header class="mast">
-  <span class="est">Established MMXXVI · Open after dark</span>
-  <h1>The Cue <i>Library</i></h1>
-  <p class="sub">A reading room for the music of moving pictures</p>
-  <div class="double-rule" aria-hidden="true"></div>
-  <nav class="nav" aria-label="Rooms"><a href="#booth">The listening booth</a><a href="#stacks">The stacks</a><a href="#catalogue">The card catalogue</a></nav>
-  <div class="double-rule" aria-hidden="true"></div>
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top" aria-label="The Cue Library, back to the top">
+    <span class="mono" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-opacity=".45"/><circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-opacity=".3"/><circle cx="20" cy="20" r="5" fill="currentColor"/><circle cx="20" cy="20" r="1.2" fill="#1A0F09"/></svg></span>
+    <span class="name">The Cue Library</span>
+  </a>
+  <nav class="links" aria-label="Rooms">
+    <a href="#wall">Record Wall</a><a href="#cutting">Cutting Room</a><a href="#lexicon">Lexicon</a><a href="#slip">Call Slip <span class="slip-count" id="slipCount" hidden></span></a>
+  </nav>
+  <span class="onair" aria-hidden="true"><i></i>On air</span>
 </header>
 
-<section class="intro">
-  <div>
-    <p class="lede">Engineers can direct a machine on code because they know the words. This library gives you the same power over music. Borrow a record, watch every part of the band move on the green baize, and read the name of each moment as it happens. Then write your brief like someone who has spent years in the studio.</p>
-    <ol class="how">
-      <li><span class="n">i.</span><span><b>Borrow a record</b> from the stacks. It is carried to the turntable in the listening booth.</span></li>
-      <li><span class="n">ii.</span><span><b>Watch the score.</b> Each colour is one part of the band; the typed card names each moment.</span></li>
-      <li><span class="n">iii.</span><span><b>Take the call slip.</b> Copy the brief and prompt, and hand them to any AI music tool or editor.</span></li>
-    </ol>
-  </div>
-  <div class="bookplate" aria-hidden="true">
-    <div class="frame">
-      <span class="ex">EX · LIBRIS</span>
-      <div class="plate">
-        <svg viewBox="0 0 240 250" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="150" cy="150" r="78" stroke-opacity=".35"/><circle cx="150" cy="150" r="62" stroke-opacity=".25"/><circle cx="150" cy="150" r="46" stroke-opacity=".2"/>
-          <circle cx="150" cy="150" r="20" fill="#7C2B22" stroke="none"/><circle cx="150" cy="150" r="3" fill="#EEE4CD" stroke="none"/>
-          <g transform="translate(-6 -8)">
-            <path d="M112 28 l14 -8 l5 8 l-13 8"/>
-            <path d="M118 31 C112 41 104 50 98 62 C88 82 86 110 86 134 L86 186 C86 212 70 228 51 228 C30 228 19 212 19 193 L19 176"/>
-            <path d="M19 176 C9 172 2 164 1 153 L39 153 C37 164 29 172 19 176 Z" fill="#EEE4CD"/>
-            <path d="M68 134 L68 186 C68 200 60 210 51 210 C41 210 37 202 37 193 L37 176" />
-            <circle cx="77" cy="96" r="4"/><circle cx="77" cy="114" r="4"/><circle cx="77" cy="132" r="4"/><circle cx="77" cy="154" r="4"/><circle cx="77" cy="172" r="4"/>
-            <path d="M86 104 h8 M86 126 h8 M86 162 h8"/>
-          </g>
-          <g stroke="none"><path class="note" style="animation-delay:0s" d="M22 120 a6 5 0 1 0 12 0 v-24 l12 -4 v6 l-10 3 v19 a6 5 0 1 1 -2 0z"/>
-            <path class="note" style="animation-delay:1.1s" d="M40 110 a5 4 0 1 0 10 0 v-22 h2 v22z"/>
-            <path class="note" style="animation-delay:2.1s" d="M10 130 a6 5 0 1 0 12 0 v-24 h2 v24z"/></g>
-        </svg>
-      </div>
-      <span class="name">the cue library</span>
+<main id="top">
+
+<section class="hero" aria-labelledby="heroTitle">
+  <div class="hero-in">
+    <span class="kicker">Est. MMXXVI <b>·</b> A reading room for sound</span>
+    <h1 id="heroTitle"><span>The Cue</span> <em>Library</em></h1>
+    <p class="hero-sub">Music for moving pictures, taken apart so you can ask for it by name.</p>
+    <p class="hero-body">You can feel the music your film needs. Musicians can name it. Twenty original records live here, each one dissected as it plays, every moment named the instant it happens. Leave with the vocabulary, the tempo and a brief that gets you the right track the first time.</p>
+    <div class="hero-cta">
+      <button class="btn gold" type="button" data-action="needle"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor"/><circle cx="10" cy="10" r="2.4" fill="currentColor"/></svg>Drop the needle</button>
+      <a class="btn line" href="#cutting">Fit music to my film <span aria-hidden="true">→</span></a>
     </div>
+    <ul class="hero-meta"><li><b>20</b> original records</li><li><b>46</b> terms, illustrated</li><li><b>1</b> cutting room for your film</li><li>Free to use in your videos</li></ul>
   </div>
+  <a class="scroll-cue" href="#about" aria-label="Enter the library"><span class="disc"></span><span>Enter the library</span></a>
 </section>
 
-<div class="fleuron" aria-hidden="true">❦</div>
+<section class="about wrap" id="about" aria-labelledby="aboutTitle">
+  <div class="sec-head light">
+    <span class="kicker">The purpose</span>
+    <h2 id="aboutTitle">Why this library <em>exists</em></h2>
+  </div>
+  <div class="about-grid">
+    <article class="letter paper">
+      <p class="dropcap">Most videos are scored in the final hour, by someone typing “upbeat corporate” into a stock site. The trouble is rarely taste. It is vocabulary.</p>
+      <p>You hear the right music in your head, but without its name you cannot ask for it: not from a composer, not from an AI music model, not from a search bar. So you settle for whatever the algorithm hands back.</p>
+      <p>This library teaches the names by ear. Every record was composed for the films technology companies actually make: launch films, teasers, product demos, social reels, founder letters. Each is taken apart while it plays, so you can watch the kick arrive, hear the silence before the drop, and read what that moment is called.</p>
+      <div class="sign"><span>The Librarian</span><span class="seal" aria-hidden="true"><svg viewBox="0 0 80 80"><path d="M40 4c6 0 8 5 13 6s10-2 13 3-1 9 1 14 7 7 5 13-7 6-8 11 2 10-3 13-9-1-14 1-7 7-13 7-8-5-13-6-10 2-13-3 1-9-1-14-7-7-5-13 7-6 8-11-2-10 3-13 9 1 14-1 7-7 13-7z" fill="#7C2B22"/><circle cx="40" cy="40" r="21" fill="none" stroke="#5A1C15" stroke-width="2"/><text x="40" y="47" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="21" font-style="italic" fill="#E9C9A8">CL</text></svg></span></div>
+    </article>
+    <div class="about-side">
+      <article class="card paper">
+        <span class="label">Who it serves</span>
+        <ul class="serves">
+          <li><span class="ic">i.</span>Founders cutting their own launch film.</li>
+          <li><span class="ic">ii.</span>Designers and motion artists who score their own work.</li>
+          <li><span class="ic">iii.</span>Editors and marketers briefing a composer.</li>
+          <li><span class="ic">iv.</span>Anyone prompting an AI music tool and getting stock music back.</li>
+        </ul>
+      </article>
+      <article class="card lacquer leave">
+        <span class="label">What you leave with</span>
+        <ol class="leave-list">
+          <li><b>The words.</b> What the music is called, part by part.</li>
+          <li><b>The tempo.</b> A BPM that lands on your cuts.</li>
+          <li><b>The timings.</b> Drop on the reveal, final chord on the end card.</li>
+          <li><b>The brief.</b> Ready to paste into any tool, or send to a composer.</li>
+        </ol>
+      </article>
+    </div>
+  </div>
 
-<section class="room" id="booth" aria-label="The listening booth">
-  <div class="section-title"><span class="kicker">Room I</span><h2>The <i>listening</i> booth</h2><p>Drop the needle. The notes scroll across the baize, the equaliser shows where each part sits, and the card below names every moment the instant it happens.</p></div>
-  <div class="booth" id="deck">
-    <div class="booth-top">
-      <div class="turntable" aria-hidden="true">
-        <div class="platter"><div class="record" id="record"><div class="label-disc" id="labelDisc"><div><b id="labelTitle"></b><small id="labelSub"></small></div></div></div><div class="sheen"></div><div class="spindle"></div></div>
-        <div class="tonearm"><svg viewBox="0 0 120 260"><circle cx="94" cy="24" r="16" fill="#3A2718" stroke="#6B4A2E"/><circle cx="94" cy="24" r="6" fill="#D6B26A"/>
-          <path d="M94 24 L94 150 L60 212" stroke="#E4DCCB" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="44" y="206" width="26" height="16" rx="3" transform="rotate(30 57 214)" fill="#D6B26A"/></svg></div>
-        <span class="plaque">33⅓ · THE CUE LIBRARY</span><span class="pilot"></span>
-      </div>
-      <div class="now">
-        <span class="cat" id="nowCat"></span>
-        <h3 id="nowTitle"></h3>
-        <p class="desc" id="nowDesc"></p>
-        <div class="facts" id="nowFacts"></div>
-        <div class="transport">
-          <button class="play" id="play" type="button" aria-label="Play"><svg class="ip" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z"/></svg><svg class="ipa" viewBox="0 0 16 16"><path d="M3.5 2.5h3v11h-3zM9.5 2.5h3v11h-3z"/></svg></button>
-          <button class="ghost" id="restart" type="button" aria-label="Back to the start"><svg viewBox="0 0 16 16"><path d="M3 2h2v12H3zM14 2.5v11L6 8z"/></svg></button>
-          <div class="stamp" aria-live="off"><span>BAR <b id="barN">01</b> · BEAT <b id="beatN">1</b> · <span id="clock">0:00.0</span></span><div class="beats" id="beats"><i></i><i></i><i></i><i></i></div></div>
+  <div class="sec-head light sub" id="how">
+    <span class="kicker">How to use it</span>
+    <h3>A visit, in four rooms</h3>
+    <p>The first visit takes about ten minutes. Headphones help: the bass lives below what laptop speakers can play.</p>
+  </div>
+  <ol class="rooms">
+    <li class="room-tile"><a href="#wall"><span class="num">I</span><span class="art" data-art="wall"></span><b>The Record Wall</b><em>Find the sound.</em><span class="t">Browse by the kind of film, or steer the compass by feel. Every sleeve plays.</span></a></li>
+    <li class="room-tile"><button type="button" data-action="open-booth"><span class="num">II</span><span class="art" data-art="booth"></span><b>The Listening Booth</b><em>Hear how it is built.</em><span class="t">It rests at the foot of every page. Hover to open it, solo a part, silence another, and watch each moment named.</span></button></li>
+    <li class="room-tile"><a href="#cutting"><span class="num">III</span><span class="art" data-art="cutting"></span><b>The Cutting Room</b><em>Fit it to your film.</em><span class="t">Bring your own cut. Mark the reveal and the end card, and the record bends to land on both.</span></a></li>
+    <li class="room-tile"><a href="#slip"><span class="num">IV</span><span class="art" data-art="slip"></span><b>Lexicon &amp; Call Slip</b><em>Take it with you.</em><span class="t">Pin the words you want. The slip writes a brief for a composer, or a prompt for an AI tool.</span></a></li>
+  </ol>
+</section>
+
+<section class="wall-sec wrap" id="wall" aria-labelledby="wallTitle">
+  <div class="sec-head light">
+    <span class="kicker">Room I</span>
+    <h2 id="wallTitle">The Record <em>Wall</em></h2>
+    <p>Twenty original records, each written for a particular kind of film, and all free to use in your videos. Pull a drawer to narrow the shelf, or steer the compass towards a feeling.</p>
+  </div>
+  <div class="drawers" id="filters" role="group" aria-label="Filter by kind of film"></div>
+  <div class="wall-grid">
+    <aside class="compass-wrap">
+      <div class="compass lacquer" id="compass">
+        <div class="c-head"><span class="label">The compass</span><span class="hint">Drag the needle</span></div>
+        <div class="pad" id="pad" role="slider" tabindex="0" aria-label="Feeling compass. Arrow keys move the needle." aria-valuetext="">
+          <canvas id="padCanvas"></canvas>
+          <span class="ax ax-l">Hushed</span><span class="ax ax-r">Charged</span><span class="ax ax-t">Built by machine</span><span class="ax ax-b">Played by hand</span>
+          <span class="needle" id="needle"><i></i></span>
         </div>
+        <div class="heading"><span class="label">Your heading</span><p id="headingWords">Warm, confident, late-night</p></div>
+        <div class="closest"><span class="label">Closest on the wall</span><ol id="closest"></ol></div>
+        <button class="btn gold small" type="button" id="playClosest">Play the closest</button>
+      </div>
+    </aside>
+    <div class="shelf" id="crate"></div>
+  </div>
+</section>
+
+<section class="cutting-sec wrap" id="cutting" aria-labelledby="cutTitle">
+  <div class="sec-head light">
+    <span class="kicker">Room II</span>
+    <h2 id="cutTitle">The Cutting <em>Room</em></h2>
+    <p>Bring your own cut. Mark the moments that matter, and the record is fitted so its drop lands on your reveal and its final chord on your end card. Your film never leaves this device.</p>
+  </div>
+  <div class="cut-grid">
+    <div class="screen-tile lacquer">
+      <div class="screen" id="screen">
+        <video id="film" playsinline muted preload="metadata"></video>
+        <canvas id="leader" aria-hidden="true"></canvas>
+        <div class="drop-hint" id="dropHint">
+          <b>Drop a video here</b>
+          <span>or <label class="linkish"><input type="file" id="filePick" accept="video/*" hidden>choose a file</label>. It stays on your computer.</span>
+        </div>
+        <div class="stamp-fx" id="stampFx" aria-hidden="true"></div>
+        <div class="tc" id="tc">00:00:00</div>
+      </div>
+      <div class="deck">
+        <button class="round" type="button" id="cutPlay" aria-label="Play the film with its music"><svg class="ip" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z"/></svg><svg class="ipa" viewBox="0 0 16 16"><path d="M3.5 2.5h3v11h-3zM9.5 2.5h3v11h-3z"/></svg></button>
+        <div class="markbtns">
+          <button type="button" class="mk reveal" data-mark="reveal"><i></i>Mark the reveal <kbd>R</kbd></button>
+          <button type="button" class="mk end" data-mark="end"><i></i>Mark the end card <kbd>E</kbd></button>
+          <button type="button" class="mk cut" data-mark="cut"><i></i>Mark a cut <kbd>C</kbd></button>
+        </div>
+        <label class="len">Length <input type="number" id="filmLen" min="4" max="180" step="0.5" value="16"> s</label>
+      </div>
+      <div class="flatbed" id="flatbed">
+        <canvas id="bed"></canvas>
+      </div>
+      <p class="bed-hint">Drag a mark to move it. Double-click a mark to remove it. Click the strip to jump.</p>
+    </div>
+    <div class="fit-col">
+      <div class="fit lacquer">
+        <span class="label">The record</span>
+        <div class="pick" id="fitPick"></div>
+        <button class="btn line small" type="button" id="suggest">Suggest records for this cut</button>
+        <ol class="suggestions" id="suggestions"></ol>
+      </div>
+      <div class="fit paper" id="fitCard">
+        <span class="label">The fit</span>
+        <div class="fit-num"><b id="fitBpm">150</b><span>BPM</span><em id="fitRate">as recorded</em></div>
+        <ul class="fit-lines" id="fitLines"></ul>
+        <div class="btns"><button class="btn ink small" type="button" id="copyCue">Copy cue sheet</button><button class="btn ink small ghosty" type="button" id="copyLink">Copy link to this cut</button><button class="btn ink small ghosty" type="button" id="toSlip">Send to call slip</button></div>
+      </div>
+      <div class="fit lacquer tempo" id="tempoDesk">
+        <span class="label">The tempo desk</span>
+        <div class="metro"><svg viewBox="0 0 80 110" aria-hidden="true"><path d="M22 104 L32 10 H48 L58 104Z" fill="#3A2012" stroke="#B38B45"/><path d="M28 96 H52" stroke="#B38B45"/><g id="pendulum"><path d="M40 92 V22" stroke="#EFE4CC" stroke-width="2.4" stroke-linecap="round"/><rect x="35" y="40" width="10" height="8" rx="2" fill="#D6B26A"/></g><circle cx="40" cy="92" r="3.5" fill="#D6B26A"/></svg>
+          <div><b id="tapBpm">—</b><span>BPM</span></div>
+          <button class="tap" type="button" id="tap">Tap<br>the beat</button></div>
+        <p class="tempo-note" id="tempoNote">Tap along to your edit, or to a song you love. We will tell you how long a bar lasts and which records sit at that pace.</p>
       </div>
     </div>
-    <div class="score">
-      <div class="baize"><canvas id="timeline" aria-label="Every note, one row per part, scrolling through the playhead"></canvas><div class="dim" id="dim"></div><div class="bigword" id="bigword"></div><div class="flashframe" id="ff"></div></div>
-      <div class="capbar" id="captions" aria-live="polite"></div>
-      <div class="baize"><canvas id="spectrum" aria-label="Equaliser, each colour is one part"></canvas></div>
-      <div class="strips" id="strips"></div>
-      <span class="hint">Space to play or pause · ← → one bar · click the score to jump · S plays a part alone, M silences it</span>
-    </div>
-  </div>
-
-  <div class="slips">
-    <div class="slip"><span class="kick">Circulation card</span><h3>What happens, and when</h3><ul class="tracks" id="tracks"></ul><span class="punch"></span></div>
-    <div class="slip"><span class="kick">Call slip</span><h3>From a feeling to a brief</h3><span class="approved">FOR VIDEO USE</span>
-      <div class="ladder" id="ladder"></div><div class="btns" id="actions"></div>
-      <details class="code"><summary>The Strudel score behind this record</summary><pre id="code"></pre></details><span class="punch"></span></div>
   </div>
 </section>
 
-<div class="fleuron" style="margin-top:70px" aria-hidden="true">❦</div>
-
-<section class="room" id="stacks" aria-label="The stacks">
-  <div class="section-title"><span class="kicker">Room II</span><h2>The <i>stacks</i></h2><p>Twenty records that launch videos, teasers, demos and reels actually use. Each one is original and free to use in your videos. Pull a drawer to find the right shelf.</p></div>
-  <div class="drawers" id="filters" role="group" aria-label="Filter by kind of video"></div>
-  <div class="shelf" id="crate"></div>
-</section>
-
-<div class="fleuron" style="margin-top:70px" aria-hidden="true">❦</div>
-
-<section class="room" id="catalogue" aria-label="The card catalogue">
-  <div class="section-title"><span class="kicker">Room III</span><h2>The card <i>catalogue</i></h2><p>Every word a musician would use to describe what you want, one card each. Open a drawer, read the card, then press play to hear the word inside a record.</p></div>
-  <div class="cabinet" role="tablist" id="chapters" aria-label="Drawers"></div>
+<section class="lex-sec wrap" id="lexicon" aria-labelledby="lexTitle">
+  <div class="sec-head light">
+    <span class="kicker">Room III</span>
+    <h2 id="lexTitle">The <em>Lexicon</em></h2>
+    <p>Forty-six words a musician would use for what you want, one card each. Read the card, hear the word inside a record, and pin it to your call slip.</p>
+  </div>
+  <div class="lex-tools">
+    <div class="cabinet" role="tablist" id="chapters" aria-label="Drawers"></div>
+    <label class="search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><input type="search" id="lexSearch" placeholder="Find a word" aria-label="Find a word in the lexicon"></label>
+  </div>
   <div class="catalogue" id="wordgrid"></div>
 </section>
 
-<footer>
-  <div class="fleuron" aria-hidden="true">❦</div>
-  <p class="colophon">Colophon. Every record in this library was composed as Strudel code and pressed offline. Drums from the uzu-drumkit (public domain). Piano: Salamander Grand Piano by Alexander Holm (CC-BY 3.0). Vibraphone, clap and gong from VCSL (CC0). Everything else is synthesised. Strudel is free software (strudel.cc, AGPL-3.0).</p>
-  <p class="sc" style="letter-spacing:.2em;font-size:14px">The Cue Library · MMXXVI</p>
+<section class="slip-sec wrap" id="slip" aria-labelledby="slipTitle">
+  <div class="sec-head light">
+    <span class="kicker">Room IV</span>
+    <h2 id="slipTitle">The Call <em>Slip</em></h2>
+    <p>Everything you have gathered, typed up as a brief. Hand it to a composer, or paste it into any AI music tool.</p>
+  </div>
+  <div class="slip-grid">
+    <div class="slip paper" id="slipCard">
+      <div class="slip-top"><span class="label">Call slip</span><span class="slip-no" id="slipNo">No. 0001</span><span class="approved">For video use</span></div>
+      <div class="fields">
+        <label><span>The film</span><select id="sFilm"><option value="launch film">Launch film</option><option value="teaser">Teaser</option><option value="product demo">Product demo</option><option value="social reel">Social reel</option><option value="founder story">Founder story</option><option value="explainer">Explainer</option></select></label>
+        <label><span>Length</span><input id="sLen" type="text" value="16 seconds"></label>
+        <label class="wide"><span>What happens on screen</span><input id="sWhat" type="text" placeholder="e.g. a dark desk, a laptop opens, the new editor appears, then the end card"></label>
+        <label class="wide"><span>Feeling, in your words</span><input id="sFeel" type="text" placeholder="e.g. confident, a little mysterious, then a lift"></label>
+      </div>
+      <div class="slip-row"><span class="k">The record</span><span class="v" id="sRecord"></span></div>
+      <div class="slip-row"><span class="k">Timings</span><span class="v" id="sTimes"></span></div>
+      <div class="slip-row"><span class="k">Words pinned</span><span class="v chips" id="sWords"></span></div>
+      <div class="out-tabs" role="tablist"><button type="button" role="tab" data-out="ai" aria-selected="true">For an AI music tool</button><button type="button" role="tab" data-out="composer" aria-selected="false">For a composer</button></div>
+      <pre class="typed" id="slipOut" aria-live="polite"></pre>
+      <div class="btns"><button class="btn ink" type="button" id="slipCopy">Copy</button><button class="btn ink ghosty" type="button" id="slipDownload">Download as text</button><button class="btn ink ghosty" type="button" id="slipClear">Clear the slip</button></div>
+    </div>
+    <aside class="slip-tips lacquer">
+      <span class="label">A prompt that works</span>
+      <ol>
+        <li><b>Lead with tempo and key.</b> “118 BPM, A Dorian” does more work than any adjective.</li>
+        <li><b>Name three to five instruments.</b> Not twenty. The model listens to the first few.</li>
+        <li><b>Describe the shape.</b> Where it builds, where it drops, how it ends.</li>
+        <li><b>Say what you do not want.</b> Vocals, crash cymbals, stock claps.</li>
+        <li><b>Ask for a button ending.</b> A final chord on the end card beats any fade-out.</li>
+      </ol>
+      <div class="tip-art" aria-hidden="true" data-art="typewriter"></div>
+    </aside>
+  </div>
+</section>
+
+<footer class="colophon wrap">
+  <div class="foot-art" data-art="sax" aria-hidden="true"></div>
+  <p class="foot-line">Built for people who make films about the things they make.</p>
+  <p class="foot-small">Every record here was written as Strudel code and pressed offline. Drums from the uzu-drumkit (public domain). Piano: the Salamander Grand by Alexander Holm (CC BY 3.0). Vibraphone, clap and gong from the VCSL (CC0). Everything else is synthesised. Strudel is free software (AGPL-3.0).</p>
+  <p class="foot-mark">The Cue Library · MMXXVI</p>
 </footer>
-</div>
-<div class="toast" id="toast" role="status"></div>
-<script src="/assets/app.js" defer></script>
+</main>
+
+<div class="island" id="island" data-state="mini" aria-label="The listening booth"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="/assets/js/main.js"></script>
 </body>
 </html>

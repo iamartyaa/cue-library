@@ -1,19 +1,23 @@
 # The Cue Library
 
-A reading room for the music of moving pictures. Twenty original records for launch videos, teasers, demos and reels. Every part of each record is animated as it plays, and every musical term is explained on an illustrated catalogue card, so people who make videos can learn the words to brief an AI music tool or an editor.
+A reading room for the music of moving pictures. Twenty original records for launch films, teasers, demos and reels, taken apart as they play, so people who make videos can ask for the right music by name.
 
-- **The listening booth**: a turntable player. Notes scroll across the score one row per part (drums, bass, chords, melody, FX), a colour-coded equaliser shows where each part sits, and a typed card names each moment (stop-down, drop, button) as it happens. Solo or mute any part.
-- **The stacks**: twenty records filtered by kind of video, each with a copy-ready brief and prompt.
-- **The card catalogue**: 46 terms in four drawers (rhythm, harmony, sound, video moves), each with an animated illustration and links to hear it in a record.
+Live at https://cue-library.vercel.app
 
-## How it is built
+## The rooms
 
-Plain static site: `index.html`, `assets/`, `data/library.json`, `audio/`. No build step.
+- **The Record Wall**: twenty records with generated sleeve art, filters by kind of film, and a compass that finds records by feel.
+- **The Listening Booth**: a floating player at the foot of every page. Hover it to open a bento of instruments: turntable, VU meters, the scrolling score, a mixing desk with solo and mute, a live spectrum, the running order, and the moment card that names each moment as it happens.
+- **The Cutting Room**: drop in your own video (it never leaves the browser), mark the reveal, the end card and your cuts. The record is fitted so its drop lands on the reveal and its final chord on the end card, and plays in sync with your film. Tap tempo, cue sheet and shareable links included.
+- **The Lexicon**: forty-six illustrated terms, each playable inside a record and pinnable to the slip.
+- **The Call Slip**: writes a prompt for an AI music tool, or a brief for a composer, from everything gathered.
 
-Every record was composed as [Strudel](https://strudel.cc) code, rendered offline in headless Chromium one part at a time, and mastered. The page plays the parts together with the Web Audio API, which is what makes per-part analysis, soloing and muting possible.
+The background is a studio room painted in plain canvas code and re-rendered as watercolour (wobbling edges, pigment pooling, granulation, tide lines, paper grain), with rain, lamp light, dust and valve glow that react to the music.
 
-## Credits and licences
+## Structure
 
-- Drums: uzu-drumkit (public domain). Piano: Salamander Grand Piano by Alexander Holm (CC-BY 3.0). Vibraphone, clap and gong: VCSL (CC0). Everything else is synthesised.
-- Strudel is free software by the TidalCycles community (AGPL-3.0). This site ships audio rendered with it, not Strudel itself.
-- The records are original and free to use in your videos.
+Static site, no build step. `index.html`, `assets/css`, `assets/js` (ES modules), `data/library.json`, `audio/` (per-part stems). `tools/build_data.py` regenerates `data/library.json` from `tools/library.src.json`.
+
+## Credits
+
+Every record was written as Strudel code (strudel.cc, AGPL-3.0) and rendered offline. Drums from the uzu-drumkit (public domain). Piano: the Salamander Grand by Alexander Holm (CC BY 3.0). Vibraphone, clap and gong from the VCSL (CC0). Everything else is synthesised.
