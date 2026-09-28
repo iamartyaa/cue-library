@@ -1,6 +1,6 @@
 // The listening booth, floating at the foot of every page.
-import * as E from './engine.js';
-import { L, $, esc, cap, fmt, hexA, reduce, LANE_COL, LANE_NAME, EFF_COL, EFF_INK, LANE_INK, copyText, recordBrief, toast } from './lib.js';
+import * as E from './engine.js?v=3';
+import { L, $, esc, cap, fmt, hexA, reduce, LANE_COL, LANE_NAME, EFF_COL, EFF_INK, LANE_INK, copyText, recordBrief, toast } from './lib.js?v=3';
 
 const IVORY = '#EFE6D2', BRASS = '#D6B26A';
 const icon = {

@@ -1,6 +1,6 @@
 // Room IV: the call slip. Everything gathered, typed up as a brief.
-import { L, $, esc, fmt2, toast, copyText, saved, persist, reduce, LANE_NAME } from './lib.js';
-import { headingText, compassState } from './wall.js';
+import { L, $, esc, fmt2, toast, copyText, saved, persist, reduce, LANE_NAME } from './lib.js?v=3';
+import { headingText, compassState } from './wall.js?v=3';
 
 const S = saved.slip || (saved.slip = { film: 'launch film', len: '16 seconds', what: '', feel: '', record: '10-future-bass', timings: null, words: [], no: 1000 + Math.floor(Math.random() * 8999) });
 let tab = 'ai', typing = 0, hooks = {};

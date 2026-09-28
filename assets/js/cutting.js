@@ -1,8 +1,8 @@
 // Room II: the cutting room. Bring a film, mark its moments, and fit a record to them.
-import * as E from './engine.js';
-import { L, $, esc, fmt, fmt2, clamp, hexA, reduce, anchors, copyText, toast, LANE_COL } from './lib.js';
-import { drawCover } from './art.js';
-import { compassState } from './wall.js';
+import * as E from './engine.js?v=3';
+import { L, $, esc, fmt, fmt2, clamp, hexA, reduce, anchors, copyText, toast, LANE_COL } from './lib.js?v=3';
+import { drawCover } from './art.js?v=3';
+import { compassState } from './wall.js?v=3';
 
 const MARK = { reveal: { col: '#E27B58', name: 'Reveal' }, end: { col: '#EAC46C', name: 'End card' }, cut: { col: '#9FC5DF', name: 'Cut' } };
 const RMIN = .88, RMAX = 1.14;

@@ -1,5 +1,5 @@
 // Room III: the lexicon. Forty-six illustrated cards, each one playable and pinnable.
-import { L, $, esc, fmt, reduce } from './lib.js';
+import { L, $, esc, fmt, reduce } from './lib.js?v=3';
 
 const INK = '#1E150E';
 const C = { d: '#B8472F', b: '#6D51A0', c: '#2F7A69', m: '#B98A2A', f: '#3E6F95', brass: '#9A7430', iv: '#2A2018', muted: '#7A6A55', oxblood: '#7C2B22' };

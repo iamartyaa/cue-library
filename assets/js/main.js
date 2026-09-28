@@ -1,13 +1,13 @@
 // The Cue Library: wiring the rooms together.
-import * as E from './engine.js';
-import { L, $, loadLibrary, reduce } from './lib.js';
-import { startRoom } from './room.js';
-import { buildIsland, onIsland, setOpen, peek } from './island.js';
-import { initWall, markCurrent } from './wall.js';
-import { initCutting, onCutting, setRecord as cutRecord, momentStamp, cameFromLink } from './cutting.js';
-import { initLexicon, onLexicon, showTerm, refreshPins } from './lexicon.js';
-import { initSlip, onSlip, togglePin, isPinned, setRecord as slipRecord, setTimings, filmType } from './slip.js';
-import { mountArt } from './art.js';
+import * as E from './engine.js?v=3';
+import { L, $, loadLibrary, reduce } from './lib.js?v=3';
+import { startRoom } from './room.js?v=3';
+import { buildIsland, onIsland, setOpen, peek } from './island.js?v=3';
+import { initWall, markCurrent } from './wall.js?v=3';
+import { initCutting, onCutting, setRecord as cutRecord, momentStamp, cameFromLink } from './cutting.js?v=3';
+import { initLexicon, onLexicon, showTerm, refreshPins } from './lexicon.js?v=3';
+import { initSlip, onSlip, togglePin, isPinned, setRecord as slipRecord, setTimings, filmType } from './slip.js?v=3';
+import { mountArt } from './art.js?v=3';
 
 function selectRecord(id, { play = false, from = 0 } = {}) {
   const c = L.byId[id]; if (!c) return;

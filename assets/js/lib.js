@@ -17,7 +17,7 @@ export const hexA = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `
 export const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
 export async function loadLibrary() {
-  const r = await fetch('/data/library.json'); const d = await r.json();
+  const r = await fetch('/data/library.json?v=3'); const d = await r.json();
   L.CLIPS = d.clips; L.GLOSS = d.glossary; L.byId = Object.fromEntries(d.clips.map(c => [c.id, c]));
   L.STYLES = d.clips.filter(c => c.kind === 'style'); L.LESSONS = d.clips.filter(c => c.kind === 'lesson');
   L.STYLES.forEach((c, i) => { c.no = i + 1; c.labelCol = c.palette[1]; });

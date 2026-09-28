@@ -1,7 +1,7 @@
 // Room I: the record wall, the compass, and the flight of a record to the booth.
-import { L, $, esc, cap, TAGS, reduce, clamp } from './lib.js';
-import { drawCover } from './art.js';
-import { discRect, peek } from './island.js';
+import { L, $, esc, cap, TAGS, reduce, clamp } from './lib.js?v=3';
+import { drawCover } from './art.js?v=3';
+import { discRect, peek } from './island.js?v=3';
 
 let filter = 'all', pick = () => {}, heading = { x: .6, y: .5, touched: false };
 export const compassState = heading;
