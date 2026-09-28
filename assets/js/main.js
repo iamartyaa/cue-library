@@ -57,7 +57,7 @@ function selectRecord(id, { play = false, from = 0 } = {}) {
   const paint = () => {
     const cv = $('room');
     startRoom(cv, () => ({ playing: E.state.playing, level: E.meter.level, bass: E.meter.bass, color: E.state.clip ? E.state.clip.labelCol : '#7C2B22', progress: E.state.clip ? E.now() / E.state.clip.dur : 0 }));
-    requestAnimationFrame(() => cv.classList.add('painted'));
+    setTimeout(() => cv.classList.add('painted'), 30);
   };
   ('requestIdleCallback' in window) ? requestIdleCallback(paint, { timeout: 600 }) : setTimeout(paint, 120);
 })();

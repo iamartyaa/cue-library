@@ -440,7 +440,7 @@ export function startRoom(canvas, audio) {
     const focusX = W < 700 ? .47 : .55;
     OX = W / 2 - DW * focusX * S; OX = Math.min(0, Math.max(W - DW * S, OX));
     OY = H - DH * S; OY = Math.min(0, OY * .6);
-    Q = W < 700 ? .9 : W > 1800 ? .5 : .62;               // painting resolution: soft on purpose
+    Q = W < 700 ? .9 : Math.min(.62, 980 / (W + 60));               // painting resolution: soft on purpose
     const pw = Math.ceil((W + BLEED * 2) * Q), ph = Math.ceil((H + BLEED * 2) * Q);
     const src = document.createElement('canvas'); src.width = pw; src.height = ph;
     const g = src.getContext('2d', { willReadFrequently: true });
@@ -539,7 +539,7 @@ export function startRoom(canvas, audio) {
   function loop(now) { raf = requestAnimationFrame(loop); if (document.hidden) return; const fps = audio().playing ? 40 : 30; if (now - lastDraw < 1000 / fps - 2) return; lastDraw = now; const f0 = performance.now(); frame(now); stats.frame = stats.frame * .9 + (performance.now() - f0) * .1; }
   let rz, lastW = 0;
   addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { if (Math.abs(innerWidth - lastW) < 2 && Math.abs(innerHeight - H) < 120) return; lastW = innerWidth; layout(); frame(performance.now()); }, 160); });
-  layout(); lastW = W;
+  layout(); lastW = W; frame(performance.now());
   if (document.fonts && document.fonts.status !== 'loaded') document.fonts.ready.then(() => { layout(); });
   if (reduce) { frame(performance.now()); addEventListener('scroll', () => frame(performance.now()), { passive: true }); }
   else raf = requestAnimationFrame(loop);
